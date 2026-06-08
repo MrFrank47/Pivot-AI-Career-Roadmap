@@ -141,6 +141,8 @@ section { position: relative; z-index: 1; }
   transform: translateX(-50%);
   z-index: 3;
   animation: float1 4s ease-in-out infinite;
+  /* Aggiunto l'alone bianco attorno alla foto centrale */
+  box-shadow: 0 0 60px rgba(255, 255, 255, 0.35), 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 .phone-side1 {
   width: 180px;
@@ -485,12 +487,15 @@ footer {
   <div class="hero-right fade-up" style="transition-delay:0.2s">
     <div class="glow-ring"></div>
     <div class="phone-cluster">
+      <!-- Immagine di sinistra (sostituita con FotoB2) -->
       <div class="phone-wrap phone-side1">
-        <img src="FotoB1.png" alt="Progress screen" onerror="this.style.background='linear-gradient(135deg,#1a2035,#0d1520)';this.style.minHeight='320px'">
+        <img src="FotoB2.png" alt="Progress screen" onerror="this.style.background='linear-gradient(135deg,#1a2035,#0d1520)';this.style.minHeight='320px'">
       </div>
+      <!-- Immagine centrale (sostituita con FotoB1) e con alone bianco via CSS -->
       <div class="phone-wrap phone-main">
-        <img src="FotoB2.png" alt="Discover screen" onerror="this.style.background='linear-gradient(135deg,#1a2035,#0d1520)';this.style.minHeight='400px'">
+        <img src="FotoB1.png" alt="Discover screen" onerror="this.style.background='linear-gradient(135deg,#1a2035,#0d1520)';this.style.minHeight='400px'">
       </div>
+      <!-- Immagine di destra -->
       <div class="phone-wrap phone-side2">
         <img src="FotoB3.png" alt="Roadmap screen" onerror="this.style.background='linear-gradient(135deg,#1a2035,#0d1520)';this.style.minHeight='320px'">
       </div>
@@ -568,21 +573,22 @@ footer {
     <span class="section-label">L'App in Azione</span>
     <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.5rem);letter-spacing:-1px;margin-top:12px">Ogni schermata, un passo verso il tuo futuro.</h2>
   </div>
+  <!-- Ordine aggiornato: FotoB1, FotoB4, FotoB5, FotoB3, FotoB2 -->
   <div class="screens-strip">
     <div class="screen-item">
-      <img src="FotoB1.png" alt="Welcome screen">
+      <img src="FotoB1.png" alt="Screen 1">
     </div>
     <div class="screen-item">
-      <img src="FotoB2.png" alt="Discover screen">
+      <img src="FotoB4.png" alt="Screen 2">
     </div>
     <div class="screen-item">
-      <img src="FotoB3.png" alt="Roadmap screen">
+      <img src="FotoB5.png" alt="Screen 3">
     </div>
     <div class="screen-item">
-      <img src="FotoB1.png" alt="Progress screen">
+      <img src="FotoB3.png" alt="Screen 4">
     </div>
     <div class="screen-item">
-      <img src="FotoB2.png" alt="Achievement screen">
+      <img src="FotoB2.png" alt="Screen 5">
     </div>
   </div>
 </section>
@@ -758,4 +764,3 @@ document.getElementById('legalModal').addEventListener('click', function(e) {
 </script>
 </body>
 </html>
-<!-- test aggiornamento -->
