@@ -141,7 +141,6 @@ section { position: relative; z-index: 1; }
   transform: translateX(-50%);
   z-index: 3;
   animation: float1 4s ease-in-out infinite;
-  /* Aggiunto l'alone bianco attorno alla foto centrale */
   box-shadow: 0 0 60px rgba(255, 255, 255, 0.35), 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 .phone-side1 {
@@ -320,6 +319,7 @@ section { position: relative; z-index: 1; }
 .screens-inner { padding: 0 40px; }
 .screens-strip {
   display: flex;
+  justify-content: center; /* Allinea il carosello al centro */
   gap: 24px;
   margin-top: 50px;
   padding: 20px 40px 40px;
@@ -338,6 +338,11 @@ section { position: relative; z-index: 1; }
 }
 .screen-item:hover { transform: scale(1.05) translateY(-8px); }
 .screen-item img { width: 100%; display: block; }
+
+@media(max-width: 1200px) {
+  /* Ripristina l'allineamento a sinistra su schermi piccoli per non rompere lo scroll */
+  .screens-strip { justify-content: flex-start; }
+}
 
 /* ─── TARGET ─── */
 #target {
@@ -487,15 +492,12 @@ footer {
   <div class="hero-right fade-up" style="transition-delay:0.2s">
     <div class="glow-ring"></div>
     <div class="phone-cluster">
-      <!-- Immagine di sinistra (sostituita con FotoB2) -->
       <div class="phone-wrap phone-side1">
         <img src="FotoB2.png" alt="Progress screen" onerror="this.style.background='linear-gradient(135deg,#1a2035,#0d1520)';this.style.minHeight='320px'">
       </div>
-      <!-- Immagine centrale (sostituita con FotoB1) e con alone bianco via CSS -->
       <div class="phone-wrap phone-main">
         <img src="FotoB1.png" alt="Discover screen" onerror="this.style.background='linear-gradient(135deg,#1a2035,#0d1520)';this.style.minHeight='400px'">
       </div>
-      <!-- Immagine di destra -->
       <div class="phone-wrap phone-side2">
         <img src="FotoB3.png" alt="Roadmap screen" onerror="this.style.background='linear-gradient(135deg,#1a2035,#0d1520)';this.style.minHeight='320px'">
       </div>
@@ -573,7 +575,6 @@ footer {
     <span class="section-label">L'App in Azione</span>
     <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.5rem);letter-spacing:-1px;margin-top:12px">Ogni schermata, un passo verso il tuo futuro.</h2>
   </div>
-  <!-- Ordine aggiornato: FotoB1, FotoB4, FotoB5, FotoB3, FotoB2 -->
   <div class="screens-strip">
     <div class="screen-item">
       <img src="FotoB1.png" alt="Screen 1">
