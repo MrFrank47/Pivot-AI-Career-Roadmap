@@ -57,7 +57,7 @@ body::before {
 /* ─── TYPOGRAPHY ─── */
 h1, h2, h3, h4 { font-family: 'Clash Display', sans-serif; line-height: 1.1; }
 
-/* ─── NAV ─── */
+/* ─── NAV & LANG SWITCH ─── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   padding: 18px 40px;
@@ -75,6 +75,34 @@ nav {
   letter-spacing: -0.5px;
 }
 .logo span { font-weight: 400; }
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 4px 6px;
+}
+.lang-switch button {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-family: 'Satoshi', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 100px;
+  transition: all 0.2s ease;
+}
+.lang-switch button:hover { color: var(--text); }
+.lang-switch button.active {
+  background: rgba(255,255,255,0.1);
+  color: var(--text);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
 
 /* ─── SECTIONS ─── */
 section { position: relative; z-index: 1; }
@@ -319,7 +347,7 @@ section { position: relative; z-index: 1; }
 .screens-inner { padding: 0 40px; }
 .screens-strip {
   display: flex;
-  justify-content: center; /* Allinea il carosello al centro */
+  justify-content: center;
   gap: 24px;
   margin-top: 50px;
   padding: 20px 40px 40px;
@@ -340,7 +368,6 @@ section { position: relative; z-index: 1; }
 .screen-item img { width: 100%; display: block; }
 
 @media(max-width: 1200px) {
-  /* Ripristina l'allineamento a sinistra su schermi piccoli per non rompere lo scroll */
   .screens-strip { justify-content: flex-start; }
 }
 
@@ -477,17 +504,19 @@ footer {
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
 
-<!-- NAV -->
 <nav>
   <div class="logo">Pivot<span>.</span></div>
+  <div class="lang-switch">
+    <button id="btn-it" class="active" onclick="switchLanguage('it')">IT</button>
+    <button id="btn-en" onclick="switchLanguage('en')">EN</button>
+  </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-left fade-up">
-    <div class="badge">🚀 Il tuo navigatore personale per la carriera</div>
-    <h1 class="hero-title">Costruisci il tuo<br><span class="grad">futuro</span>,<br>un passo alla volta.</h1>
-    <p class="hero-sub">Pivot usa l'Intelligenza Artificiale avanzata per creare roadmap di carriera personalizzate: ti dice esattamente cosa studiare, per quanto tempo e dove trovare i corsi migliori per raggiungere il lavoro dei tuoi sogni.</p>
+    <div class="badge" data-i18n="badge">🚀 Il tuo navigatore personale per la carriera</div>
+    <h1 class="hero-title" data-i18n="hero_title">Costruisci il tuo<br><span class="grad">futuro</span>,<br>un passo alla volta.</h1>
+    <p class="hero-sub" data-i18n="hero_sub">Pivot usa l'Intelligenza Artificiale avanzata per creare roadmap di carriera personalizzate: ti dice esattamente cosa studiare, per quanto tempo e dove trovare i corsi migliori per raggiungere il lavoro dei tuoi sogni.</p>
   </div>
   <div class="hero-right fade-up" style="transition-delay:0.2s">
     <div class="glow-ring"></div>
@@ -507,30 +536,29 @@ footer {
 
 <div class="divider"></div>
 
-<!-- PROBLEM -->
 <section id="problem">
   <div class="fade-up">
-    <span class="section-label">Il Problema</span>
-    <h2 class="section-title">Troppe informazioni,<br>zero chiarezza.</h2>
-    <p class="section-sub">Vuoi cambiare lavoro o imparare una nuova competenza, ma ti scontri subito con una domanda: da dove inizio?</p>
+    <span class="section-label" data-i18n="prob_label">Il Problema</span>
+    <h2 class="section-title" data-i18n="prob_title">Troppe informazioni,<br>zero chiarezza.</h2>
+    <p class="section-sub" data-i18n="prob_sub">Vuoi cambiare lavoro o imparare una nuova competenza, ma ti scontri subito con una domanda: da dove inizio?</p>
     <div class="pain-grid">
       <div class="pain-card">
         <span class="pain-emoji">🤯</span>
-        <h4>Confusione sui corsi</h4>
-        <p>Ci sono migliaia di piattaforme. Qual è il corso giusto per te? Senza una guida, ogni scelta è un salto nel buio.</p>
+        <h4 data-i18n="pain1_title">Confusione sui corsi</h4>
+        <p data-i18n="pain1_sub">Ci sono migliaia di piattaforme. Qual è il corso giusto per te? Senza una guida, ogni scelta è un salto nel buio.</p>
       </div>
       <div class="pain-card">
         <span class="pain-emoji">🧭</span>
-        <h4>Nessuna strategia</h4>
-        <p>Comprare un corso a caso non basta per ottenere un lavoro. Serve un piano step-by-step, non una lista infinita.</p>
+        <h4 data-i18n="pain2_title">Nessuna strategia</h4>
+        <p data-i18n="pain2_sub">Comprare un corso a caso non basta per ottenere un lavoro. Serve un piano step-by-step, non una lista infinita.</p>
       </div>
       <div class="pain-card">
         <span class="pain-emoji">💸</span>
-        <h4>Budget e tempo sprecati</h4>
-        <p>Iniziare percorsi formativi sbagliati o non adatti al mercato del tuo Paese è un errore costoso.</p>
+        <h4 data-i18n="pain3_title">Budget e tempo sprecati</h4>
+        <p data-i18n="pain3_sub">Iniziare percorsi formativi sbagliati o non adatti al mercato del tuo Paese è un errore costoso.</p>
       </div>
     </div>
-    <div class="resolution">
+    <div class="resolution" data-i18n="prob_res">
       ✦ Pivot risolve tutto questo, trasformando il caos in una mappa chiara e strutturata.
     </div>
   </div>
@@ -538,118 +566,104 @@ footer {
 
 <div class="divider"></div>
 
-<!-- HOW IT WORKS -->
 <section id="how">
   <div class="fade-up">
-    <span class="section-label">Come Funziona</span>
-    <h2 class="section-title">Dal tuo punto di partenza<br>al lavoro dei sogni in 3 step.</h2>
-    <p class="section-sub">Un processo semplice, guidato dall'AI.</p>
+    <span class="section-label" data-i18n="how_label">Come Funziona</span>
+    <h2 class="section-title" data-i18n="how_title">Dal tuo punto di partenza<br>al lavoro dei sogni in 3 step.</h2>
+    <p class="section-sub" data-i18n="how_sub">Un processo semplice, guidato dall'AI.</p>
   </div>
   <div class="steps">
     <div class="step-card fade-up">
       <div class="step-num">1</div>
       <div class="step-icon blue">🧑</div>
-      <h3>Raccontaci di te</h3>
-      <p>Inserisci la tua professione attuale, il tuo reddito, il tuo Paese e il tuo obiettivo lavorativo. Ad esempio: da Cameriere a Junior iOS Developer.</p>
+      <h3 data-i18n="step1_title">Raccontaci di te</h3>
+      <p data-i18n="step1_sub">Inserisci la tua professione attuale, il tuo reddito, il tuo Paese e il tuo obiettivo lavorativo. Ad esempio: da Cameriere a Junior iOS Developer.</p>
     </div>
     <div class="step-card fade-up" style="transition-delay:0.1s">
       <div class="step-num">2</div>
       <div class="step-icon teal">🤖</div>
-      <h3>L'AI disegna la rotta</h3>
-      <p>Il nostro motore AI analizza il mercato e genera istantaneamente una Roadmap divisa in moduli logici, con tempistiche di studio stimate.</p>
+      <h3 data-i18n="step2_title">L'AI disegna la rotta</h3>
+      <p data-i18n="step2_sub">Il nostro motore AI analizza il mercato e genera istantaneamente una Roadmap divisa in moduli logici, con tempistiche di studio stimate.</p>
     </div>
     <div class="step-card fade-up" style="transition-delay:0.2s">
       <div class="step-num">3</div>
       <div class="step-icon green">🏆</div>
-      <h3>Impara e tieni traccia</h3>
-      <p>Segui i task uno per uno. Clicca sui link diretti per iscriverti ai migliori corsi, segna i progressi e festeggia i traguardi raggiunti.</p>
+      <h3 data-i18n="step3_title">Impara e tieni traccia</h3>
+      <p data-i18n="step3_sub">Segui i task uno per uno. Clicca sui link diretti per iscriverti ai migliori corsi, segna i progressi e festeggia i traguardi raggiunti.</p>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- SCREENSHOTS -->
 <section id="screens">
   <div class="screens-inner fade-up">
-    <span class="section-label">L'App in Azione</span>
-    <h2 class="section-title" style="font-size:clamp(1.8rem,3vw,2.5rem);letter-spacing:-1px;margin-top:12px">Ogni schermata, un passo verso il tuo futuro.</h2>
+    <span class="section-label" data-i18n="screen_label">L'App in Azione</span>
+    <h2 class="section-title" data-i18n="screen_title" style="font-size:clamp(1.8rem,3vw,2.5rem);letter-spacing:-1px;margin-top:12px">Ogni schermata, un passo verso il tuo futuro.</h2>
   </div>
   <div class="screens-strip">
-    <div class="screen-item">
-      <img src="FotoB1.png" alt="Screen 1">
-    </div>
-    <div class="screen-item">
-      <img src="FotoB4.png" alt="Screen 2">
-    </div>
-    <div class="screen-item">
-      <img src="FotoB5.png" alt="Screen 3">
-    </div>
-    <div class="screen-item">
-      <img src="FotoB3.png" alt="Screen 4">
-    </div>
-    <div class="screen-item">
-      <img src="FotoB2.png" alt="Screen 5">
-    </div>
+    <div class="screen-item"><img src="FotoB1.png" alt="Screen 1"></div>
+    <div class="screen-item"><img src="FotoB4.png" alt="Screen 2"></div>
+    <div class="screen-item"><img src="FotoB5.png" alt="Screen 3"></div>
+    <div class="screen-item"><img src="FotoB3.png" alt="Screen 4"></div>
+    <div class="screen-item"><img src="FotoB2.png" alt="Screen 5"></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- FEATURES -->
 <section id="features">
   <div class="fade-up">
-    <span class="section-label">Funzionalità</span>
-    <h2 class="section-title">Molto più di una<br>semplice to-do list.</h2>
-    <p class="section-sub">Strumenti reali per una crescita professionale reale.</p>
+    <span class="section-label" data-i18n="feat_label">Funzionalità</span>
+    <h2 class="section-title" data-i18n="feat_title">Molto più di una<br>semplice to-do list.</h2>
+    <p class="section-sub" data-i18n="feat_sub">Strumenti reali per una crescita professionale reale.</p>
   </div>
   <div class="features-grid">
     <div class="feat-card fade-up">
       <span class="feat-emoji">🎯</span>
-      <h3>Iper-Personalizzazione</h3>
-      <p>La tua roadmap tiene conto del tuo budget e del Paese in cui vivi, suggerendo percorsi realistici e accessibili.</p>
+      <h3 data-i18n="feat1_title">Iper-Personalizzazione</h3>
+      <p data-i18n="feat1_sub">La tua roadmap tiene conto del tuo budget e del Paese in cui vivi, suggerendo percorsi realistici e accessibili.</p>
     </div>
     <div class="feat-card fade-up" style="transition-delay:0.1s">
       <span class="feat-emoji">🔗</span>
-      <h3>Integrazione con le Academy</h3>
-      <p>Non devi cercare su Google. Pivot ti fornisce link diretti verso Coursera, edX, Udemy e le migliori piattaforme.</p>
+      <h3 data-i18n="feat2_title">Integrazione con le Academy</h3>
+      <p data-i18n="feat2_sub">Non devi cercare su Google. Pivot ti fornisce link diretti verso Coursera, edX, Udemy e le migliori piattaforme.</p>
     </div>
     <div class="feat-card fade-up" style="transition-delay:0.15s">
       <span class="feat-emoji">☁️</span>
-      <h3>Cloud & Multi-device</h3>
-      <p>Accedi con Apple (Sign-in with Apple). I tuoi progressi sono salvati nel cloud, disponibili su qualsiasi dispositivo.</p>
+      <h3 data-i18n="feat3_title">Cloud & Multi-device</h3>
+      <p data-i18n="feat3_sub">Accedi con Apple (Sign-in with Apple). I tuoi progressi sono salvati nel cloud, disponibili su qualsiasi dispositivo.</p>
     </div>
     <div class="feat-card fade-up" style="transition-delay:0.2s">
       <span class="feat-emoji">🏆</span>
-      <h3>Gamification</h3>
-      <p>Percentuali di completamento, trofei e un'interfaccia interattiva per mantenerti sempre motivato lungo il percorso.</p>
+      <h3 data-i18n="feat4_title">Gamification</h3>
+      <p data-i18n="feat4_sub">Percentuali di completamento, trofei e un'interfaccia interattiva per mantenerti sempre motivato lungo il percorso.</p>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- TARGET -->
 <section id="target">
   <div class="fade-up">
-    <span class="section-label">Per Chi</span>
-    <h2 class="section-title">Disegnata per chi<br>vuole crescere.</h2>
-    <p class="section-sub">Qualunque sia il tuo punto di partenza, Pivot ha una rotta per te.</p>
+    <span class="section-label" data-i18n="target_label">Per Chi</span>
+    <h2 class="section-title" data-i18n="target_title">Disegnata per chi<br>vuole crescere.</h2>
+    <p class="section-sub" data-i18n="target_sub">Qualunque sia il tuo punto di partenza, Pivot ha una rotta per te.</p>
     <div class="target-grid">
       <div class="target-card">
         <span class="target-emoji">🔄</span>
-        <h4>Career Switchers</h4>
-        <p>Vuoi reinventarti professionalmente? Capisci esattamente quali competenze colmare e in quanto tempo.</p>
+        <h4 data-i18n="target1_title">Career Switchers</h4>
+        <p data-i18n="target1_sub">Vuoi reinventarti professionalmente? Capisci esattamente quali competenze colmare e in quanto tempo.</p>
       </div>
       <div class="target-card">
         <span class="target-emoji">🎓</span>
-        <h4>Studenti & Neolaureati</h4>
-        <p>Colma il divario tra teoria accademica e skill pratiche richieste dalle aziende nel mercato reale.</p>
+        <h4 data-i18n="target2_title">Studenti & Neolaureati</h4>
+        <p data-i18n="target2_sub">Colma il divario tra teoria accademica e skill pratiche richieste dalle aziende nel mercato reale.</p>
       </div>
       <div class="target-card">
         <span class="target-emoji">📈</span>
-        <h4>Professionisti in Upskilling</h4>
-        <p>Hai già un lavoro ma vuoi acquisire skill specifiche in AI o management per ottenere una promozione.</p>
+        <h4 data-i18n="target3_title">Professionisti in Upskilling</h4>
+        <p data-i18n="target3_sub">Hai già un lavoro ma vuoi acquisire skill specifiche in AI o management per ottenere una promozione.</p>
       </div>
     </div>
   </div>
@@ -657,26 +671,24 @@ footer {
 
 <div class="divider"></div>
 
-<!-- STATUS -->
 <section id="status">
   <div class="fade-up">
     <div class="status-pill">
       <div class="pulse"></div>
-      Beta Privata
+      <span data-i18n="status_pill">Beta Privata</span>
     </div>
-    <h2 class="section-title" style="font-size:2rem;letter-spacing:-1px;margin-bottom:16px">Il lancio è alle porte.</h2>
-    <p class="status-text">Pivot è attualmente in fase Beta privata. Stiamo perfezionando i nostri algoritmi di AI (basati su Mistral) e chiudendo le partnership con i leader mondiali dell'educazione online.</p>
+    <h2 class="section-title" data-i18n="status_title" style="font-size:2rem;letter-spacing:-1px;margin-bottom:16px">Il lancio è alle porte.</h2>
+    <p class="status-text" data-i18n="status_sub">Pivot è attualmente in fase Beta privata. Stiamo perfezionando i nostri algoritmi di AI (basati su Mistral) e chiudendo le partnership con i leader mondiali dell'educazione online.</p>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- PARTNERS -->
 <section id="partners">
   <div class="fade-up">
     <div class="partners-box">
-      <h2>Collabora con Pivot</h2>
-      <p>Pivot non si limita a incollare link. Forniamo alle grandi piattaforme e-learning traffico altamente qualificato ed "intent-driven": l'utente clicca sul link di un corso solo quando quel corso è richiesto dal suo percorso personalizzato. Tassi di conversione significativamente più alti rispetto ai tradizionali canali di affiliazione.</p>
+      <h2 data-i18n="partners_title">Collabora con Pivot</h2>
+      <p data-i18n="partners_sub">Pivot non si limita a incollare link. Forniamo alle grandi piattaforme e-learning traffico altamente qualificato ed "intent-driven": l'utente clicca sul link di un corso solo quando quel corso è richiesto dal suo percorso personalizzato. Tassi di conversione significativamente più alti rispetto ai tradizionali canali di affiliazione.</p>
       <div class="partner-logos">
         <div class="partner-chip">Coursera</div>
         <div class="partner-chip">edX</div>
@@ -688,21 +700,19 @@ footer {
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-left">
     <div class="logo">Pivot<span>.</span></div>
-    <div class="footer-copy">© 2026 Pivot App. Tutti i diritti riservati.</div>
-    <div class="footer-contact" style="margin-top:6px">Contatti: <a href="mailto:flombardi824@gmail.com">flombardi824@gmail.com</a></div>
+    <div class="footer-copy" data-i18n="footer_copy">© 2026 Pivot App. Tutti i diritti riservati.</div>
+    <div class="footer-contact" style="margin-top:6px"><span data-i18n="footer_contact">Contatti: </span><a href="mailto:flombardi824@gmail.com">flombardi824@gmail.com</a></div>
   </div>
   <div class="footer-links">
     <a href="https://mrfrank47.github.io/en/" target="_blank">Privacy Policy</a>
-    <a href="#" onclick="showLegal('terms')">Termini di Servizio</a>
-    <a href="#" onclick="showLegal('cookie')">Gestione Cookie</a>
+    <a href="#" onclick="showLegal('terms')" data-i18n="footer_terms">Termini di Servizio</a>
+    <a href="#" onclick="showLegal('cookie')" data-i18n="footer_cookie">Gestione Cookie</a>
   </div>
 </footer>
 
-<!-- LEGAL MODALS -->
 <div id="legalModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:20px;">
   <div style="background:#131722;border:1px solid rgba(255,255,255,0.1);border-radius:24px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto;padding:40px;position:relative;">
     <button onclick="closeLegal()" style="position:absolute;top:16px;right:16px;background:none;border:none;color:var(--muted);font-size:1.5rem;cursor:pointer;line-height:1;">×</button>
@@ -717,47 +727,194 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-// Legal modals
-const legalTexts = {
-  terms: `<h2 style="font-family:'Clash Display',sans-serif;font-size:1.5rem;margin-bottom:20px;letter-spacing:-0.5px">Termini di Servizio</h2>
-<p style="color:var(--muted);font-size:0.9rem;line-height:1.75">
-<strong style="color:var(--text)">1. Accettazione dei Termini</strong><br>
-Utilizzando Pivot, l'utente accetta integralmente i presenti Termini di Servizio.<br><br>
-<strong style="color:var(--text)">2. Descrizione del Servizio</strong><br>
-Pivot è un'applicazione mobile che genera roadmap di carriera personalizzate tramite intelligenza artificiale. Il servizio include suggerimenti formativi, link a piattaforme di terze parti e strumenti di tracciamento progressi.<br><br>
-<strong style="color:var(--text)">3. Account e Accesso</strong><br>
-L'accesso avviene tramite Sign-in with Apple. L'utente è responsabile della sicurezza del proprio account.<br><br>
-<strong style="color:var(--text)">4. Limitazione di Responsabilità</strong><br>
-Pivot fornisce indicazioni orientative basate su algoritmi AI. Non garantiamo l'ottenimento di specifici risultati occupazionali. Le roadmap sono suggerimenti e non sostituiscono la consulenza professionale.<br><br>
-<strong style="color:var(--text)">5. Link di Terze Parti</strong><br>
-Pivot integra link affiliati verso piattaforme di formazione. Non siamo responsabili per i contenuti o le politiche di tali piattaforme.<br><br>
-<strong style="color:var(--text)">6. Modifiche</strong><br>
-Ci riserviamo il diritto di modificare i presenti Termini con preavviso di 30 giorni via email.<br><br>
-<strong style="color:var(--text)">7. Contatti</strong><br>
-Per qualsiasi questione legale: <a href="mailto:flombardi824@gmail.com" style="color:var(--teal)">flombardi824@gmail.com</a>
-</p>`,
-  cookie: `<h2 style="font-family:'Clash Display',sans-serif;font-size:1.5rem;margin-bottom:20px;letter-spacing:-0.5px">Gestione Cookie</h2>
-<p style="color:var(--muted);font-size:0.9rem;line-height:1.75">
-<strong style="color:var(--text)">Cookie Tecnici</strong><br>
-Utilizziamo cookie strettamente necessari al funzionamento del sito (sessione, preferenze). Non richiedono consenso.<br><br>
-<strong style="color:var(--text)">Cookie Analitici</strong><br>
-Utilizziamo strumenti di analisi aggregata e anonima per migliorare l'esperienza utente. Nessun dato personale viene condiviso con terze parti.<br><br>
-<strong style="color:var(--text)">Cookie di Marketing</strong><br>
-Non utilizziamo cookie di profilazione o pubblicità comportamentale di terze parti.<br><br>
-<strong style="color:var(--text)">Come gestire i cookie</strong><br>
-Puoi disabilitare i cookie dal tuo browser in qualsiasi momento. Tieni presente che disabilitare i cookie tecnici potrebbe compromettere alcune funzionalità del sito.<br><br>
-<strong style="color:var(--text)">Contatti</strong><br>
-Per esercitare i tuoi diritti GDPR: <a href="mailto:flombardi824@gmail.com" style="color:var(--teal)">flombardi824@gmail.com</a>
-</p>`
+// ─── TRANSLATIONS DICTIONARY ───
+const translations = {
+  it: {
+    page_title: "Pivot — Costruisci il tuo futuro",
+    badge: "🚀 Il tuo navigatore personale per la carriera",
+    hero_title: "Costruisci il tuo<br><span class='grad'>futuro</span>,<br>un passo alla volta.",
+    hero_sub: "Pivot usa l'Intelligenza Artificiale avanzata per creare roadmap di carriera personalizzate: ti dice esattamente cosa studiare, per quanto tempo e dove trovare i corsi migliori per raggiungere il lavoro dei tuoi sogni.",
+    prob_label: "Il Problema",
+    prob_title: "Troppe informazioni,<br>zero chiarezza.",
+    prob_sub: "Vuoi cambiare lavoro o imparare una nuova competenza, ma ti scontri subito con una domanda: da dove inizio?",
+    pain1_title: "Confusione sui corsi",
+    pain1_sub: "Ci sono migliaia di piattaforme. Qual è il corso giusto per te? Senza una guida, ogni scelta è un salto nel buio.",
+    pain2_title: "Nessuna strategia",
+    pain2_sub: "Comprare un corso a caso non basta per ottenere un lavoro. Serve un piano step-by-step, non una lista infinita.",
+    pain3_title: "Budget e tempo sprecati",
+    pain3_sub: "Iniziare percorsi formativi sbagliati o non adatti al mercato del tuo Paese è un errore costoso.",
+    prob_res: "✦ Pivot risolve tutto questo, trasformando il caos in una mappa chiara e strutturata.",
+    how_label: "Come Funziona",
+    how_title: "Dal tuo punto di partenza<br>al lavoro dei sogni in 3 step.",
+    how_sub: "Un processo semplice, guidato dall'AI.",
+    step1_title: "Raccontaci di te",
+    step1_sub: "Inserisci la tua professione attuale, il tuo reddito, il tuo Paese e il tuo obiettivo lavorativo. Ad esempio: da Cameriere a Junior iOS Developer.",
+    step2_title: "L'AI disegna la rotta",
+    step2_sub: "Il nostro motore AI analizza il mercato e genera istantaneamente una Roadmap divisa in moduli logici, con tempistiche di studio stimate.",
+    step3_title: "Impara e tieni traccia",
+    step3_sub: "Segui i task uno per uno. Clicca sui link diretti per iscriverti ai migliori corsi, segna i progressi e festeggia i traguardi raggiunti.",
+    screen_label: "L'App in Azione",
+    screen_title: "Ogni schermata, un passo verso il tuo futuro.",
+    feat_label: "Funzionalità",
+    feat_title: "Molto più di una<br>semplice to-do list.",
+    feat_sub: "Strumenti reali per una crescita professionale reale.",
+    feat1_title: "Iper-Personalizzazione",
+    feat1_sub: "La tua roadmap tiene conto del tuo budget e del Paese in cui vivi, suggerendo percorsi realistici e accessibili.",
+    feat2_title: "Integrazione con le Academy",
+    feat2_sub: "Non devi cercare su Google. Pivot ti fornisce link diretti verso Coursera, edX, Udemy e le migliori piattaforme.",
+    feat3_title: "Cloud & Multi-device",
+    feat3_sub: "Accedi con Apple (Sign-in with Apple). I tuoi progressi sono salvati nel cloud, disponibili su qualsiasi dispositivo.",
+    feat4_title: "Gamification",
+    feat4_sub: "Percentuali di completamento, trofei e un'interfaccia interattiva per mantenerti sempre motivato lungo il percorso.",
+    target_label: "Per Chi",
+    target_title: "Disegnata per chi<br>vuole crescere.",
+    target_sub: "Qualunque sia il tuo punto di partenza, Pivot ha una rotta per te.",
+    target1_title: "Career Switchers",
+    target1_sub: "Vuoi reinventarti professionalmente? Capisci esattamente quali competenze colmare e in quanto tempo.",
+    target2_title: "Studenti & Neolaureati",
+    target2_sub: "Colma il divario tra teoria accademica e skill pratiche richieste dalle aziende nel mercato reale.",
+    target3_title: "Professionisti in Upskilling",
+    target3_sub: "Hai già un lavoro ma vuoi acquisire skill specifiche in AI o management per ottenere una promozione.",
+    status_pill: "Beta Privata",
+    status_title: "Il lancio è alle porte.",
+    status_sub: "Pivot è attualmente in fase Beta privata. Stiamo perfezionando i nostri algoritmi di AI (basati su Mistral) e chiudendo le partnership con i leader mondiali dell'educazione online.",
+    partners_title: "Collabora con Pivot",
+    partners_sub: "Pivot non si limita a incollare link. Forniamo alle grandi piattaforme e-learning traffico altamente qualificato ed \"intent-driven\": l'utente clicca sul link di un corso solo quando quel corso è richiesto dal suo percorso personalizzato. Tassi di conversione significativamente più alti rispetto ai tradizionali canali di affiliazione.",
+    footer_copy: "© 2026 Pivot App. Tutti i diritti riservati.",
+    footer_contact: "Contatti: ",
+    footer_terms: "Termini di Servizio",
+    footer_cookie: "Gestione Cookie"
+  },
+  en: {
+    page_title: "Pivot — Build your future",
+    badge: "🚀 Your personal career navigator",
+    hero_title: "Build your<br><span class='grad'>future</span>,<br>one step at a time.",
+    hero_sub: "Pivot uses advanced Artificial Intelligence to create personalized career roadmaps: it tells you exactly what to study, for how long, and where to find the best courses to reach your dream job.",
+    prob_label: "The Problem",
+    prob_title: "Too much information,<br>zero clarity.",
+    prob_sub: "Want to change jobs or learn a new skill, but immediately face a question: where do I start?",
+    pain1_title: "Course Confusion",
+    pain1_sub: "There are thousands of platforms. Which is the right course for you? Without a guide, every choice is a leap in the dark.",
+    pain2_title: "No Strategy",
+    pain2_sub: "Buying a random course isn't enough to land a job. You need a step-by-step plan, not an endless list.",
+    pain3_title: "Wasted Budget and Time",
+    pain3_sub: "Starting the wrong training paths or ones not suited to your country's market is an expensive mistake.",
+    prob_res: "✦ Pivot solves all this, transforming chaos into a clear, structured map.",
+    how_label: "How It Works",
+    how_title: "From your starting point<br>to your dream job in 3 steps.",
+    how_sub: "A simple, AI-driven process.",
+    step1_title: "Tell us about yourself",
+    step1_sub: "Enter your current profession, your income, your country, and your career goal. For example: from Waiter to Junior iOS Developer.",
+    step2_title: "AI charts the course",
+    step2_sub: "Our AI engine analyzes the market and instantly generates a Roadmap divided into logical modules, with estimated study times.",
+    step3_title: "Learn and track",
+    step3_sub: "Follow the tasks one by one. Click the direct links to enroll in the best courses, track your progress, and celebrate your milestones.",
+    screen_label: "The App in Action",
+    screen_title: "Every screen, a step towards your future.",
+    feat_label: "Features",
+    feat_title: "Much more than a<br>simple to-do list.",
+    feat_sub: "Real tools for real professional growth.",
+    feat1_title: "Hyper-Personalization",
+    feat1_sub: "Your roadmap takes into account your budget and the country you live in, suggesting realistic and accessible paths.",
+    feat2_title: "Academy Integration",
+    feat2_sub: "No need to search on Google. Pivot provides direct links to Coursera, edX, Udemy, and top platforms.",
+    feat3_title: "Cloud & Multi-device",
+    feat3_sub: "Sign in with Apple. Your progress is saved in the cloud, available on any device.",
+    feat4_title: "Gamification",
+    feat4_sub: "Completion percentages, trophies, and an interactive interface to keep you motivated along the way.",
+    target_label: "For Whom",
+    target_title: "Designed for those<br>who want to grow.",
+    target_sub: "Whatever your starting point, Pivot has a route for you.",
+    target1_title: "Career Switchers",
+    target1_sub: "Want to reinvent yourself professionally? Understand exactly which skills to bridge and in how much time.",
+    target2_title: "Students & New Grads",
+    target2_sub: "Bridge the gap between academic theory and practical skills demanded by companies in the real market.",
+    target3_title: "Professionals Upskilling",
+    target3_sub: "Already have a job but want to acquire specific skills in AI or management to get a promotion.",
+    status_pill: "Private Beta",
+    status_title: "Launch is around the corner.",
+    status_sub: "Pivot is currently in private Beta. We are refining our AI algorithms (based on Mistral) and closing partnerships with global leaders in online education.",
+    partners_title: "Partner with Pivot",
+    partners_sub: "Pivot doesn't just paste links. We provide major e-learning platforms with highly qualified, intent-driven traffic: the user clicks on a course link only when that course is required by their personalized path. Conversion rates are significantly higher than traditional affiliate channels.",
+    footer_copy: "© 2026 Pivot App. All rights reserved.",
+    footer_contact: "Contact: ",
+    footer_terms: "Terms of Service",
+    footer_cookie: "Cookie Management"
+  }
 };
 
+const legalTexts = {
+  it: {
+    terms: `<h2 style="font-family:'Clash Display',sans-serif;font-size:1.5rem;margin-bottom:20px;letter-spacing:-0.5px">Termini di Servizio</h2>
+<p style="color:var(--muted);font-size:0.9rem;line-height:1.75">
+<strong style="color:var(--text)">1. Accettazione dei Termini</strong><br>Utilizzando Pivot, l'utente accetta integralmente i presenti Termini di Servizio.<br><br>
+<strong style="color:var(--text)">2. Descrizione del Servizio</strong><br>Pivot è un'applicazione mobile che genera roadmap di carriera personalizzate tramite intelligenza artificiale.<br><br>
+<strong style="color:var(--text)">3. Account e Accesso</strong><br>L'accesso avviene tramite Sign-in with Apple. L'utente è responsabile della sicurezza del proprio account.<br><br>
+<strong style="color:var(--text)">4. Limitazione di Responsabilità</strong><br>Pivot fornisce indicazioni orientative basate su algoritmi AI. Non garantiamo l'ottenimento di specifici risultati occupazionali.<br><br>
+<strong style="color:var(--text)">5. Contatti</strong><br>Per qualsiasi questione legale: <a href="mailto:flombardi824@gmail.com" style="color:var(--teal)">flombardi824@gmail.com</a>
+</p>`,
+    cookie: `<h2 style="font-family:'Clash Display',sans-serif;font-size:1.5rem;margin-bottom:20px;letter-spacing:-0.5px">Gestione Cookie</h2>
+<p style="color:var(--muted);font-size:0.9rem;line-height:1.75">
+<strong style="color:var(--text)">Cookie Tecnici</strong><br>Utilizziamo cookie strettamente necessari al funzionamento del sito.<br><br>
+<strong style="color:var(--text)">Cookie Analitici</strong><br>Utilizziamo strumenti di analisi aggregata e anonima per migliorare l'esperienza utente.<br><br>
+<strong style="color:var(--text)">Come gestire i cookie</strong><br>Puoi disabilitare i cookie dal tuo browser in qualsiasi momento.<br><br>
+<strong style="color:var(--text)">Contatti</strong><br>Per esercitare i tuoi diritti GDPR: <a href="mailto:flombardi824@gmail.com" style="color:var(--teal)">flombardi824@gmail.com</a>
+</p>`
+  },
+  en: {
+    terms: `<h2 style="font-family:'Clash Display',sans-serif;font-size:1.5rem;margin-bottom:20px;letter-spacing:-0.5px">Terms of Service</h2>
+<p style="color:var(--muted);font-size:0.9rem;line-height:1.75">
+<strong style="color:var(--text)">1. Acceptance of Terms</strong><br>By using Pivot, you fully accept these Terms of Service.<br><br>
+<strong style="color:var(--text)">2. Service Description</strong><br>Pivot is a mobile application that generates personalized career roadmaps using artificial intelligence.<br><br>
+<strong style="color:var(--text)">3. Account and Access</strong><br>Access is provided via Sign-in with Apple. The user is responsible for their account security.<br><br>
+<strong style="color:var(--text)">4. Limitation of Liability</strong><br>Pivot provides guidance based on AI algorithms. We do not guarantee specific employment results.<br><br>
+<strong style="color:var(--text)">5. Contacts</strong><br>For any legal inquiries: <a href="mailto:flombardi824@gmail.com" style="color:var(--teal)">flombardi824@gmail.com</a>
+</p>`,
+    cookie: `<h2 style="font-family:'Clash Display',sans-serif;font-size:1.5rem;margin-bottom:20px;letter-spacing:-0.5px">Cookie Management</h2>
+<p style="color:var(--muted);font-size:0.9rem;line-height:1.75">
+<strong style="color:var(--text)">Technical Cookies</strong><br>We use cookies strictly necessary for the operation of the website.<br><br>
+<strong style="color:var(--text)">Analytics Cookies</strong><br>We use aggregated and anonymous analysis tools to improve user experience.<br><br>
+<strong style="color:var(--text)">How to manage cookies</strong><br>You can disable cookies from your browser at any time.<br><br>
+<strong style="color:var(--text)">Contacts</strong><br>To exercise your GDPR rights: <a href="mailto:flombardi824@gmail.com" style="color:var(--teal)">flombardi824@gmail.com</a>
+</p>`
+  }
+};
+
+let currentLang = 'it';
+let activeModalType = null;
+
+function switchLanguage(lang) {
+  currentLang = lang;
+  
+  // Aggiorna pulsanti visivi
+  document.getElementById('btn-it').classList.toggle('active', lang === 'it');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.documentElement.lang = lang;
+  document.title = translations[lang].page_title;
+
+  // Traduce tutto il testo con data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if(translations[lang][key]) {
+      el.innerHTML = translations[lang][key];
+    }
+  });
+
+  // Aggiorna il modale se è aperto
+  if (activeModalType && document.getElementById('legalModal').style.display === 'flex') {
+    showLegal(activeModalType);
+  }
+}
+
+// Legal modals logic
 function showLegal(type) {
-  document.getElementById('legalContent').innerHTML = legalTexts[type];
-  const m = document.getElementById('legalModal');
-  m.style.display = 'flex';
+  activeModalType = type;
+  document.getElementById('legalContent').innerHTML = legalTexts[currentLang][type];
+  document.getElementById('legalModal').style.display = 'flex';
 }
 function closeLegal() {
   document.getElementById('legalModal').style.display = 'none';
+  activeModalType = null;
 }
 document.getElementById('legalModal').addEventListener('click', function(e) {
   if(e.target === this) closeLegal();
